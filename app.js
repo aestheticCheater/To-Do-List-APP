@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 var items = [];
+var validationInput = ["kur", "putka", "eba", "daeba", "maikati"];
 app.set('view engine', 'ejs'); // required to view in views folder the engine list.ejs
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,10 +27,15 @@ res.render("list", {dayOfWeek: day, newListItems: items}); //  we render our lis
 });                                                        // then it gets  passed into the list.ejs under variable newListItems
 app.post("/", function(req, res){
    var item = req.body.newItem;
-   if(item !== ""){
+if(items.length >= 5){
+  items.shift();
+}
+
+   if(item !== "" && item !== "kur" && item !== "putka"){
    items.push(item); }
   res.redirect("/");
 });
+
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Server started on port 3000");
