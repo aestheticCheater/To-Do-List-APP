@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 var items = [];
-var validationInput = ["kur", "putka", "eba", "daeba", "maikati"];
+
 app.set('view engine', 'ejs'); // required to view in views folder the engine list.ejs
 
 app.use(bodyParser.urlencoded({extended: true}));
